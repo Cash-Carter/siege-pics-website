@@ -18,7 +18,9 @@ If not, see <https://www.gnu.org/licenses/>.
     padding: 0;
 }
 
-.body {
+body {
+    display: flex;
+    flex-direction: column;
     background-color: black;
 }
 
@@ -44,7 +46,7 @@ header {
     justify-content: flex-start; /* This will snap all content of header to the left due to 'flex-direction: row'  */
     background-color: whitesmoke;
     border-bottom: solid;
-    padding: 0.5rem 1rem; /* Padding top/bottom then left/right. 1rem = default pixel size of html font (14px or 16px etc) so 0.5rem = 7px or 8px  */
+    padding: 0.25rem 1rem; /* Padding top/bottom then left/right. 1rem = default pixel size of html font (14px or 16px etc) so 0.5rem = 7px or 8px  */
 }
 
 .logo {
@@ -56,13 +58,25 @@ nav {
     display: flex;
     flex-direction: row;
     flex: 1; /* Use the rest of the available space of the <header> */
-    justify-content: right; /* Keep the links in the center of this element  */
+    justify-content: right;
     align-items: center; /* Puts the links vertically in the center of the <nav> */
 }
 
 nav a {
     padding: 1rem;
     text-decoration: none; /* Take away the default link styling  */
+    font-size: larger;
     color: black;
     border-bottom: 2px solid transparent;
+}
+
+footer {
+    background-color: dimgray;
+    margin-top: 5px;
+    padding: 0.25rem 1rem;
+}
+
+footer a {
+    color: aqua;
+    font-size: large;
 }
