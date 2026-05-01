@@ -21,6 +21,10 @@
 2. Add photos to `images`
 
 ## Running
+Start the virtual environment
+```
+.venv/Scripts/activate
+```
 For running in production mode use
 ```
 fastapi run
