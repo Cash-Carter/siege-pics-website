@@ -25,9 +25,11 @@ body {
 }
 
 .image {
-    width: 100%;
+    height: 100%;
     max-width: 25%;
+    width: auto;
     margin: 3px;
+    
 }
 
 .image-list {
