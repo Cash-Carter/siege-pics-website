@@ -25,6 +25,7 @@ def read_root():
 
     image_list = ""
     for image in os.listdir("site/images"):
+        if image == "logo.png": continue
         image_list += image_template.format(image=image)
 
     return website_template.format(images=image_list)

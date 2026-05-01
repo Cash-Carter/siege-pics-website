@@ -13,15 +13,56 @@ You should have received a copy of the GNU Affero General Public License along w
 If not, see <https://www.gnu.org/licenses/>.
 */
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .body {
     background-color: black;
 }
 
-.image {}
+.image {
+    width: 100%;
+    max-width: 25%;
+    margin: 3px;
+}
 
 .image-list {
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 10px;
     margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+header {
+    display: flex;
+    flex-direction: row; /* This is default so you can omit it but it's good to be explicit  */
+    justify-content: flex-start; /* This will snap all content of header to the left due to 'flex-direction: row'  */
+    background-color: whitesmoke;
+    border-bottom: solid;
+    padding: 0.5rem 1rem; /* Padding top/bottom then left/right. 1rem = default pixel size of html font (14px or 16px etc) so 0.5rem = 7px or 8px  */
+}
+
+header > img {
+    height: 50px; /* Set the height of your image  */
+    width: auto; /* Keep the height/width ratio of source image  */
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    flex: 1; /* Use the rest of the available space of the <header> */
+    justify-content: right; /* Keep the links in the center of this element  */
+    align-items: center; /* Puts the links vertically in the center of the <nav> */
+}
+
+nav a {
+    padding: 1rem;
+    text-decoration: none; /* Take away the default link styling  */
+    color: black;
+    border-bottom: 2px solid transparent;
 }
