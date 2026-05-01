@@ -20,6 +20,7 @@ app = FastAPI()
 
 @app.get("/", response_class=HTMLResponse)
 def read_root():
+    common_elements = open("site/html/common-elements.html").read()
     website_template = open("site/html/index.html").read()
     image_template = open("site/html/image-template.html").read()
 
@@ -28,7 +29,21 @@ def read_root():
         if image == "logo.png": continue
         image_list += image_template.format(image=image)
 
-    return website_template.format(images=image_list)
+    return common_elements.format(content=website_template.format(images=image_list))
+
+
+@app.get("/about", response_class=HTMLResponse)
+def read_about():
+    common_elements = open("site/html/common-elements.html").read()
+    about = open("site/html/about.html").read()
+    return common_elements.format(content=about)
+
+
+@app.get("/contact", response_class=HTMLResponse)
+def read_contact():
+    common_elements = open("site/html/common-elements.html").read()
+    contact = open("site/html/contact.html").read()
+    return common_elements.format(content=contact)
 
 
 @app.get("/images/{image}", response_class=FileResponse)
