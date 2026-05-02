@@ -32,6 +32,13 @@ def read_root():
     return common_elements.format(content=website_template.format(images=image_list))
 
 
+@app.get("/image/{image}", response_class=HTMLResponse)
+def read_image(image: str):
+    common_elements = open("site/html/common-elements.html").read()
+    viewer = open("site/html/viewer.html").read()
+    return common_elements.format(content=viewer.format(image=image))
+
+
 @app.get("/about", response_class=HTMLResponse)
 def read_about():
     common_elements = open("site/html/common-elements.html").read()
