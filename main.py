@@ -27,6 +27,7 @@ def read_root():
     image_list = ""
     for image in os.listdir("site/images"):
         if image == "logo.png": continue
+        if image == "logo.ico": continue
         image_list += image_template.format(image=image)
 
     return common_elements.format(content=website_template.format(images=image_list))
@@ -38,12 +39,17 @@ def read_image(image: str):
     viewer = open("site/html/viewer.html").read()
     return common_elements.format(content=viewer.format(image=image))
 
-
 @app.get("/about", response_class=HTMLResponse)
 def read_about():
     common_elements = open("site/html/common-elements.html").read()
     about = open("site/html/about.html").read()
     return common_elements.format(content=about)
+
+@app.get("/fortnite", response_class=HTMLResponse)
+def read_about():
+    common_elements = open("site/html/common-elements.html").read()
+    fortnite = open("site/html/fortnite.html").read()
+    return common_elements.format(content=fortnite)
 
 
 @app.get("/contact", response_class=HTMLResponse)
@@ -74,6 +80,10 @@ async def post_image(image: UploadFile = File(...)):
 @app.get("/images/{image}", response_class=FileResponse)
 def get_image(image: str):
     return FileResponse("site/images/" + image)
+
+@app.get("/music/{music}", response_class=FileResponse)
+def music(music: str):
+    return FileResponse("site/music/" + music)
 
 
 @app.get("/css/{file}", response_class=Response)

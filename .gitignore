@@ -11,4 +11,5 @@ wheels/
 
 # Image files
 site/images/
+site/resources/
 site/submissions/

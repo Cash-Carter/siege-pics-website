@@ -24,6 +24,14 @@ body {
     background-color: black;
 }
 
+.wrapper {
+  box-sizing: border-box;
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
 .image {
     height: 100%;
     max-width: 25%;
@@ -43,15 +51,21 @@ body {
 }
 
 .huge-image {
-    width: 100%;
+    width: 50%;
     height: auto;
 }
+
+audio::-webkit-media-controls-play-button,
+     audio::-webkit-media-controls-panel {
+     background-color: #575757;
+     padding-left: 1%;
+     }
 
 header {
     display: flex;
     flex-direction: row; /* This is default so you can omit it but it's good to be explicit  */
     justify-content: flex-start; /* This will snap all content of header to the left due to 'flex-direction: row'  */
-    background-color: whitesmoke;
+    background-color: rgb(49, 49, 49);
     border-bottom: solid;
     padding: 0.25rem 1rem; /* Padding top/bottom then left/right. 1rem = default pixel size of html font (14px or 16px etc) so 0.5rem = 7px or 8px  */
 }
@@ -59,6 +73,8 @@ header {
 .logo {
     height: 50px; /* Set the height of your image  */
     width: auto; /* Keep the height/width ratio of source image  */
+    
+    
 }
 
 nav {
@@ -69,18 +85,37 @@ nav {
     align-items: center; /* Puts the links vertically in the center of the <nav> */
 }
 
+nav a:hover {
+    padding: 1rem;
+    text-decoration: none; /* Take away the default link styling  */
+    color: rgb(51, 145, 255);
+    border-bottom: 2px solid transparent;
+}
+
+nav a:active {
+    padding: 1rem;
+    text-decoration: none; /* Take away the default link styling  */
+    color: rgb(1, 119, 255);
+    border-bottom: 2px solid transparent;
+}
+
 nav a {
     padding: 1rem;
     text-decoration: none; /* Take away the default link styling  */
     font-size: larger;
-    color: black;
+    color: rgb(255, 255, 255);
     border-bottom: 2px solid transparent;
 }
 
 footer {
-    background-color: dimgray;
-    margin-top: 5px;
-    padding: 0.25rem 1rem;
+    position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 2.5%;
+  background-color: dimgray;
+  color: white;
+  text-align: left;
+  padding: .25rem 1rem;
 }
 
 footer a {
