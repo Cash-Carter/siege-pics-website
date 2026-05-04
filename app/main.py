@@ -12,14 +12,13 @@
 # If not, see <https://www.gnu.org/licenses/>.
 
 from fastapi import FastAPI
-from .routers import about, contact, css, fortnite, image, images, music, root, submission, submit
+from fastapi.staticfiles import StaticFiles
+from .routers import about, contact, fortnite, image, images, music, root, submission, submit
 
 app = FastAPI()
 
-
 app.include_router(about.router)
 app.include_router(contact.router)
-app.include_router(css.router)
 app.include_router(fortnite.router)
 app.include_router(image.router)
 app.include_router(images.router)
@@ -27,3 +26,5 @@ app.include_router(music.router)
 app.include_router(root.router)
 app.include_router(submission.router)
 app.include_router(submit.router)
+
+app.mount("/css", StaticFiles(directory="app/css"), name="css")
