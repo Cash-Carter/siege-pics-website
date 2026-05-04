@@ -13,7 +13,7 @@
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from .routers import about, contact, fortnite, image, music, root, submission, submit
+from .routers import about, contact, fortnite, image, root, submission, submit
 
 app = FastAPI()
 
@@ -21,10 +21,10 @@ app.include_router(about.router)
 app.include_router(contact.router)
 app.include_router(fortnite.router)
 app.include_router(image.router)
-app.include_router(music.router)
 app.include_router(root.router)
 app.include_router(submission.router)
 app.include_router(submit.router)
 
 app.mount("/css", StaticFiles(directory="app/css"), name="css")
 app.mount("/images", StaticFiles(directory="app/images"), name="images")
+app.mount("/music", StaticFiles(directory="app/music"), name="music")
