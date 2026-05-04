@@ -14,6 +14,7 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import Response, HTMLResponse, FileResponse, RedirectResponse
 import os
+from random import randint
 
 app = FastAPI()
 
@@ -70,10 +71,13 @@ def read_submission():
 async def post_image(image: UploadFile = File(...)):
     contents = await image.read()
     try:
-        with open("site/submissions/" + image.filename, "xb") as buffer:
-            buffer.write(contents)
+        if contents.__sizeof__() < 10000000:
+            with open("site/submissions/" + image.filename, "xb") as buffer:
+                buffer.write(contents)
     except:
-        pass # TODO: handle duplicate files
+        if contents.__sizeof__() < 10000000:
+            with open("site/submissions/" + image.filename + str(randint(0, 999999999)), "xb") as buffer:
+                buffer.write(contents)
     return RedirectResponse(url="/", status_code=303)
 
 
