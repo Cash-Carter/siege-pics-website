@@ -27,4 +27,5 @@ app.include_router(submit.router)
 
 app.mount("/css", StaticFiles(directory="app/css"), name="css")
 app.mount("/images", StaticFiles(directory="app/images"), name="images")
+app.mount("/javascript", StaticFiles(directory="app/javascript"), name="javascript")
 app.mount("/music", StaticFiles(directory="app/music"), name="music")

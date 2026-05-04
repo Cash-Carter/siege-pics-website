@@ -12,23 +12,23 @@
 # If not, see <https://www.gnu.org/licenses/>.
 
 import os
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 from fastapi.responses import HTMLResponse
+from typing import Annotated
 
 router = APIRouter()
 
 
 @router.get("/", response_class=HTMLResponse)
-def read_root(operators: str | None = None):
+def read_root(operators: Annotated[list[str] | None, Query()] = None):
     common_elements = open("app/html/common-elements.html").read()
-    website_template = open("app/html/index.html").read()
+    website_template = open("app/html/gallery.html").read()
     image_template = open("app/html/image-template.html").read()
 
     images = os.listdir("app/images")
 
     if operators:
-        filters = operators.split(",")
-        images = filter(lambda image: not set(image.split("-")[0].split("_")).isdisjoint(filters), images)
+        images = filter(lambda image: not set(image.split("-")[0].split("_")).isdisjoint(set(operators)), images)
 
     image_list = ""
     for image in images:
