@@ -11,6 +11,7 @@
 # You should have received a copy of the GNU Affero General Public License along with this program.
 # If not, see <https://www.gnu.org/licenses/>.
 
+from random import randint
 from fastapi import APIRouter, File, UploadFile
 from fastapi.responses import RedirectResponse
 
@@ -19,13 +20,18 @@ router = APIRouter()
 
 @router.post("/submit", response_class=RedirectResponse)
 async def post_image(image: UploadFile = File(...)):
+    response = RedirectResponse(url="/", status_code=303)
     contents = await image.read()
+    if contents.__sizeof__() > 10000000 or contents.__sizeof__() < 100:
+        return response
+    if image.filename == None:
+        return response
+    
     try:
-        if contents.__sizeof__() < 10000000:
-            with open("app/submissions/" + image.filename, "xb") as buffer:
-                buffer.write(contents)
+        with open("app/submissions/" + image.filename, "xb") as buffer:
+            buffer.write(contents)
     except:
-        if contents.__sizeof__() < 10000000 and contents.__sizeof__() > 100:
-            with open("app/submissions/" + image.filename + str(randint(0, 999999999)), "xb") as buffer:
-                buffer.write(contents)
-    return RedirectResponse(url="/", status_code=303)
+        with open("app/submissions/" + image.filename + str(randint(0, 999999999)), "xb") as buffer:
+            buffer.write(contents)
+    
+    return response
