@@ -10,6 +10,9 @@ wheels/
 .venv
 
 # Image files
-site/images/
-site/resources/
-site/submissions/
+app/images/
+app/resources/
+app/submissions/
+
+# Audio foles
+app/music/

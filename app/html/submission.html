@@ -1,0 +1,13 @@
+<body>
+    <form action="/submit" method="post" enctype="multipart/form-data">
+        <input id="image" name="image" type="file" accept="image/*" style="color: white;">
+        <input name="submit" type="submit" disabled="true">
+    </form>
+
+    <script>
+        document.querySelector("input[type=file]").onchange = ({ target: { value }, }) => 
+    {
+        document.querySelector("input[type=submit]").disabled = !value;
+    };
+  </script>
+</body>
