@@ -64,7 +64,7 @@ def read_contact():
 def read_submission():
     common_elements = open("site/html/common-elements.html").read()
     submission = open("site/html/submission.html").read()
-    return common_elements.format(content=submission)
+    return common_elements.format(content=submission)   
 
 
 @app.post("/submit", response_class=RedirectResponse)
@@ -75,7 +75,7 @@ async def post_image(image: UploadFile = File(...)):
             with open("site/submissions/" + image.filename, "xb") as buffer:
                 buffer.write(contents)
     except:
-        if contents.__sizeof__() < 10000000:
+        if contents.__sizeof__() < 10000000 and contents.__sizeof__() > 100:
             with open("site/submissions/" + image.filename + str(randint(0, 999999999)), "xb") as buffer:
                 buffer.write(contents)
     return RedirectResponse(url="/", status_code=303)
