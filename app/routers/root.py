@@ -19,15 +19,21 @@ router = APIRouter()
 
 
 @router.get("/", response_class=HTMLResponse)
-def read_root():
+def read_root(operators: str | None = None):
     common_elements = open("app/html/common-elements.html").read()
     website_template = open("app/html/index.html").read()
     image_template = open("app/html/image-template.html").read()
 
+    images = os.listdir("app/images")
+
+    if operators:
+        filters = operators.split(",")
+        images = filter(lambda image: not set(image.split("-")[0].split("_")).isdisjoint(filters), images)
+
     image_list = ""
-    for image in os.listdir("app/images"):
+    for image in images:
         if image == "logo.png": continue
         if image == "logo.ico": continue
         image_list += image_template.format(image=image)
 
-    return common_elements.format(content=website_template.format(images=image_list))
+    return common_elements.format(content=website_template.format(images=image_list)) # TODO: add different page if no images found

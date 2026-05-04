@@ -1,0 +1,9 @@
+names-uniqueid.extention
+
+where names is a list of operator names, all lowercase, no special charachters, seperated by underscores (_)
+for operators with spaces in thier names, omit the spaces. example: Solid Snake -> solidsnake (this is the only case of this right now)
+and uniqueid is some string not containing _, -, or .
+and extention is just the file extention.
+
+example:
+ela_ash_solidsnake-1.png
