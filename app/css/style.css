@@ -119,8 +119,9 @@ body {
 
 audio::-webkit-media-controls-play-button,
      audio::-webkit-media-controls-panel {
-     background-color: #575757;
+     background-color: rgb(69, 67, 87);
      padding-left: 1%;
+     color: white;
      }
 
 header {
@@ -175,17 +176,17 @@ nav a {
 
 footer {
     position: fixed;
-  left: 0;
-  bottom: 0;
+    left: 0;
+    bottom: 0;
 
-  background-color: dimgray;
-  color: white;
-  text-align: left;
-  padding: .25rem 1rem;
+    background-color: rgb(47, 46, 58);
+    color: white;
+    text-align: left;
+    padding: .25rem 1rem;
 }
 
 footer a {
-    color: aqua;
+    color: rgb(17, 112, 255);
     font-size: large;
 }
 

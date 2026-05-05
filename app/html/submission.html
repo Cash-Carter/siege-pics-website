@@ -1,13 +1,14 @@
 <body>
-    <form action="/submit" method="post" enctype="multipart/form-data">
+    <form style="position: absolute; left: 42%; top: 50%; border-style: solid; border-width: 3px; border-color: white;" action="/submit" method="post" enctype="multipart/form-data">
         <input id="image" name="image" type="file" accept="image/*" style="color: white;">
-        <input name="submit" type="submit" disabled="true">
+        <br>
+        <br>
+        <input style="position:relative; left: 40%;" name="submit" type="submit" disabled="true">
     </form>
 
     <script>
-        document.querySelector("input[type=file]").onchange = ({ target: { value }, }) => 
-    {
-        document.querySelector("input[type=submit]").disabled = !value;
-    };
+        document.querySelector("input[type=file]").onchange = ({ target: { value }, }) => {
+            document.querySelector("input[type=submit]").disabled = !value;
+        };
   </script>
 </body>
