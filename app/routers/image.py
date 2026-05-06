@@ -13,12 +13,15 @@
 
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
+from app.templates import templates
 
 router = APIRouter()
 
 
 @router.get("/image/{image}", response_class=HTMLResponse)
 def read_image(image: str):
-    common_elements = open("app/html/common-elements.html").read()
-    viewer = open("app/html/viewer.html").read()
-    return common_elements.format(content=viewer.format(image=image))
+    return templates.get_template("common-elements.html").render(
+        content=templates.get_template("viewer.html").render(
+            image=image
+        )
+    )

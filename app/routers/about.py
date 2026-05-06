@@ -11,14 +11,14 @@
 # You should have received a copy of the GNU Affero General Public License along with this program.
 # If not, see <https://www.gnu.org/licenses/>.
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
+from app.templates import templates
 
 router = APIRouter()
 
 
 @router.get("/about", response_class=HTMLResponse)
 def read_about():
-    common_elements = open("app/html/common-elements.html").read()
-    about = open("app/html/about.html").read()
-    return common_elements.format(content=about)
+    with open("app/html/about.html") as about:
+        return templates.get_template("common-elements.html").render(content=about.read())

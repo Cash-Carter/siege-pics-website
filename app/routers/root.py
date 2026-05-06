@@ -15,16 +15,13 @@ import os
 from fastapi import APIRouter, Query
 from fastapi.responses import HTMLResponse
 from typing import Annotated
+from app.templates import templates
 
 router = APIRouter()
 
 
 @router.get("/", response_class=HTMLResponse)
 def read_root(operators: Annotated[list[str] | None, Query()] = None):
-    common_elements = open("app/html/common-elements.html").read()
-    website_template = open("app/html/gallery.html").read()
-    image_template = open("app/html/image-template.html").read()
-
     images = os.listdir("app/images")
 
     if operators:
@@ -34,6 +31,10 @@ def read_root(operators: Annotated[list[str] | None, Query()] = None):
     for image in images:
         if image == "logo.png": continue
         if image == "logo.ico": continue
-        image_list += image_template.format(image=image)
+        image_list += templates.get_template("image-template.html").render(image=image)
 
-    return common_elements.format(content=website_template.format(images=image_list)) # TODO: add different page if no images found
+    return templates.get_template("common-elements.html").render(
+        content=templates.get_template("gallery.html").render(
+            image_list=image_list
+        )
+    )

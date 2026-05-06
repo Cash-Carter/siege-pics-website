@@ -13,12 +13,14 @@
 
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
+from app.templates import templates
 
 router = APIRouter()
 
 
 @router.get("/submission", response_class=HTMLResponse)
 def read_submission():
-    common_elements = open("app/html/common-elements.html").read()
-    submission = open("app/html/submission.html").read()
-    return common_elements.format(content=submission)   
+    with open("app/html/submission.html") as submission:
+        return templates.get_template("common-elements.html").render(
+            content=submission.read()
+        )

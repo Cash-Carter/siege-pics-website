@@ -31,9 +31,9 @@ If not, see <https: //www.gnu.org/licenses />.
         <a href="/">
             <img class="logo" src="/images/logo.png">
         </a>
-       
+
         <audio style="position: relative;" src="/music/mia.mp3" controls>
-             Your browser does not support the audio element.
+            Your browser does not support the audio element.
         </audio>
 
         <nav class="navbar">
@@ -44,7 +44,8 @@ If not, see <https: //www.gnu.org/licenses />.
         </nav>
     </header>
 
-    {content}
+    {{ content | safe }}
+
     <footer>
         <a href="https://github.com/Cash-Carter/siege-pics-website">source</a>
     </footer>

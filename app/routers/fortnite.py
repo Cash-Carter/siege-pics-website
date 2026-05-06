@@ -13,12 +13,14 @@
 
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
+from app.templates import templates
 
 router = APIRouter()
 
 
 @router.get("/fortnite", response_class=HTMLResponse)
 def read_about():
-    common_elements = open("app/html/common-elements.html").read()
-    fortnite = open("app/html/fortnite.html").read()
-    return common_elements.format(content=fortnite)
+    with open("app/html/fortnite.html") as fortnite:
+        return templates.get_template("common-elements.html").render(
+            content=fortnite.read()
+        )

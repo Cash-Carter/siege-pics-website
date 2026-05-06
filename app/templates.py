@@ -11,16 +11,11 @@
 # You should have received a copy of the GNU Affero General Public License along with this program.
 # If not, see <https://www.gnu.org/licenses/>.
 
-from fastapi import APIRouter
-from fastapi.responses import HTMLResponse
-from app.templates import templates
+from fastapi.templating import Jinja2Templates
+from jinja2 import Environment, PackageLoader, select_autoescape
 
-router = APIRouter()
-
-
-@router.get("/contact", response_class=HTMLResponse)
-def read_contact():
-    with open("app/html/contact.html") as contact:
-        return templates.get_template("common-elements.html").render(
-            content=contact.read()
-        )
+env = Environment(
+    loader=PackageLoader("app", "html/templates"),
+    autoescape=select_autoescape(),
+)
+templates = Jinja2Templates(env=env)
