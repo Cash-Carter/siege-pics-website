@@ -13,7 +13,7 @@
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from .routers import about, contact, fortnite, image, quiz_question, quiz, root, submission, submit
+from routers import about, contact, fortnite, image, quiz_question, quiz, root, submission, submit
 
 app = FastAPI()
 

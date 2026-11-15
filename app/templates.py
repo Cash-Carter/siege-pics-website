@@ -15,7 +15,7 @@ from fastapi.templating import Jinja2Templates
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 env = Environment(
-    loader=PackageLoader("app", "html/templates"),
+    loader=PackageLoader("main", "html/templates"),
     autoescape=select_autoescape(),
 )
 templates = Jinja2Templates(env=env)

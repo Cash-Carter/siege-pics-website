@@ -1,3 +1,7 @@
+# SSL related files
+private_key
+origin_certificate
+
 # Python-generated files
 __pycache__/
 *.py[oc]

@@ -15,7 +15,7 @@ import os
 from fastapi import APIRouter, Query
 from fastapi.responses import HTMLResponse
 from typing import Annotated
-from app.templates import templates
+from templates import templates
 
 router = APIRouter()
 

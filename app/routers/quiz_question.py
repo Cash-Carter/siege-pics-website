@@ -15,7 +15,7 @@ import os
 from random import randint
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from app.templates import templates
+from templates import templates
 
 router = APIRouter()
 
